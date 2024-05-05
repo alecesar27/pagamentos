@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<main class="principal">
+    <section class="conta">
+       <div class="conta__container">
+        <div class="checkout__titulos">
+          <p class="checkout__titulo">Exportar Relatórios</p>
+        </div>
+
+        <div class="conta__form">
+                <a class="subtotal__botao" href="/clientes_csv">
+                    Exportar Clientes
+                </a>
+        </div>
+
+        <div class="conta__form">
+            <a class="subtotal__botao" href="/pagamento_csv">
+                Exportar Pagamentos
+            </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+{% endblock %}

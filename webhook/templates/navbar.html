@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid container">
+    <a class="navbar-brand" href="{{ url_for('home') }}">API Webhook</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="d-flex navbar-nav">
+        {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('sair') }}">Sair</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('usuarios') }}">Usuários</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('clientes') }}">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('pagamentos') }}">Pagamentos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('retornos') }}">Processar Retornos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('relatorios') }}">Relatórios</a>
+          </li>
+        {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}">Criar Conta</a>
+            </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

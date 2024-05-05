@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+        <div class="container">
+            <h1>Clientes</h1>
+            {% for cliente in lista_clientes %}
+                  <div class="container mt-5 d-flex justify-content-center">
+                    <div class="card p-3">
+                        <div class="d-flex align-items-center">
+                            <div class="ml-3 w-100">
+                                <h4 class="mb-0 mt-0">{{ cliente.nome }}</h4> <span>{{ cliente.email }}</span>
+                                        {% if cliente.ativo %}
+                                        <h6 class="mb-0 mt-0">Ativo</h6>
+                                        {%else %}
+                                        <h6 class="mb-0 mt-0">Inativo</h6>
+                                        {%endif%}
+                                <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats"></div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                {% endfor %}
+        </div>
+
+{% endblock %}
