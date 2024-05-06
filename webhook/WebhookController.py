@@ -73,4 +73,4 @@ def processar_pagamento(lista):
 
        #chamada da função para consultar os webhooks e realizar as operações
        # Favor acessar a o arquivo testes.py para limpar o banco
-       processar_pagamento(load_webhooks())
+#processar_pagamento(load_webhooks())
