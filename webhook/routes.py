@@ -65,6 +65,8 @@ def retornos():
     print("Início do programa")
     lista_webhooks = WebhookController.load_webhooks()
     WebhookController.processar_pagamento(lista_webhooks)
+    lista_pagamentos = Pagamento.query.all()
+    return render_template('pagamentos.html', lista_pagamentos=lista_pagamentos)
 
 
 @app.route("/pagamento_csv")
