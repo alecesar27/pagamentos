@@ -44,14 +44,12 @@ def processar_pagamento(lista):
             database.session.commit()
             #EnviarEmail.send_mail(retorno['email'],retorno['status'])
             print("Bem vindo ao Curso Python impressionador, Acesso liberado")
-
-            if cliente:
-               pagamento = Pagamento(status=retorno['status'],valor=retorno['valor'],
+            pagamento = Pagamento(status=retorno['status'],valor=retorno['valor'],
                                            forma=retorno['forma_pagamento'],id_cliente=int(id_cliente))
-               database.session.add(pagamento)
-               database.session.commit()
+            database.session.add(pagamento)
+            database.session.commit()
 
-            elif retorno['status'] == 'recusado':
+          if retorno['status'] == 'recusado':
                id_cliente = Cliente.query.filter_by(email=retorno['email']).first().id
                pagamento = Pagamento(status=retorno['status'],valor=retorno['valor'],
                              forma=retorno['forma_pagamento'],id_cliente=int(id_cliente))
@@ -60,7 +58,7 @@ def processar_pagamento(lista):
                #EnviarEmail.send_mail(retorno['email'], retorno['status'])
                print('Seu pagamento foi recusado, favor realizar uma nova tentativa')
 
-            elif retorno['status'] == 'reembolsado':
+          if retorno['status'] == 'reembolsado':
               id_cliente = Cliente.query.filter_by(email=retorno['email']).first().id
               pagamento = Pagamento(status=retorno['status'], valor=retorno['valor'],
                                          forma=retorno['forma_pagamento'], id_cliente=int(id_cliente))
@@ -71,6 +69,6 @@ def processar_pagamento(lista):
               #EnviarEmail.send_mail(retorno['email'], retorno['status'])
               print("Você foi reembolsado favor verificar a conta informada para depósito. Seu acesso foi revogado")
 
-       #chamada da função para consultar os webhooks e realizar as operações
-       # Favor acessar a o arquivo testes.py para limpar o banco
+#chamada da função para consultar os webhooks e realizar as operações
+# Favor acessar a o arquivo testes.py para limpar o banco
 #processar_pagamento(load_webhooks())
