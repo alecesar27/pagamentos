@@ -37,7 +37,7 @@ def processar_pagamento(lista):
           webhook = requests.get(item)
           retorno = webhook.json()
           print(retorno)
-          time.sleep(60)
+          
           if retorno['status'] == 'aprovado':
             id_cliente = Cliente.query.filter_by(email=retorno['email']).first().id
             cliente = Cliente.query.filter_by(email = retorno['email']).update({'ativo':True})
