@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+        <div class="container">
+            <h1>Localizar Cliente</h1>
+                  <div class="container mt-5 d-flex justify-content-center">
+                    <div class="card p-3">
+                        <div class="d-flex align-items-center">
+                            <div class="ml-3 w-100">
+                               <form method="POST" action="" class="border p-4 mt-2">
+                                    {{ form_busca.csrf_token }}
+                                    <legend>Buscar Cliente</legend>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            {{ form_busca.email.label(class="form-control-label") }}
+                                            {{ form_busca.email(class="form-control-input") }}
+                                            {% if form_busca.email.errors %}
+                                                {{ form_busca.email(class="form-control is-invalid") }}
+                                            <div class="invalid-feedback">
+                                                {% for erro in form_busca.email.errors %}
+                                                    {{ erro }}
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                                {% if pagamento %}
+                                                   <h4 class="mb-0 mt-0"> {{ pagamento.customer.nome }}</h4>
+                                                     <h6 class="mb-0 mt-0"> {{ pagamento.customer.email }}</h6>
+                                                     <h6 class="mb-0 mt-0">{{ pagamento.status }}</h6>
+                                                      <h6 class="mb-0 mt-0">{{ pagamento.valor }}</h6>
+                                                      <h6 class="mb-0 mt-0">{{ pagamento.forma }}</h6>
+                                                      <h6 class="mb-0 mt-0">{{ pagamento.customer.forma }}</h6>
+                                                        {% if pagamento.customer.ativo %}
+                                                        <h6 class="mb-0 mt-0">Ativo</h6>
+                                                        {%else %}
+                                                        <h6 class="mb-0 mt-0">Inativo</h6>
+                                                        {%endif%}
+                                               {%endif%}
+                                            {% endif %}
+                                        </div>
+
+                                    </fieldset>
+                                    {{ form_busca.botao_submit_busca(class="btn btn-primary mt-2") }}
+                               </form>
+
+                                <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+        </div>
+
+{% endblock %}
