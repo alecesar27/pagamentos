@@ -68,6 +68,7 @@ def processar_pagamento(lista):
               database.session.commit()
               #EnviarEmail.send_mail(retorno['email'], retorno['status'])
               print("Você foi reembolsado favor verificar a conta informada para depósito. Seu acesso foi revogado")
+              time.sleep(60)
 
 #chamada da função para consultar os webhooks e realizar as operações
 # Favor acessar a o arquivo testes.py para limpar o banco
