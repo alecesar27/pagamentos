@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, flash, request
 from webhook import app,database,bcrypt, WebhookController
-from webhook.forms import FormLogin, FormCriarConta
+from webhook.forms import FormLogin, FormCriarConta, FormBuscarCliente
 from webhook.models import Usuario,Cliente,Pagamento,Cliente_Curso
 from flask_login import login_user,logout_user,current_user
 from flask import Flask, render_template, request, Response, send_file
@@ -45,6 +45,20 @@ def usuarios():
 def clientes():
     lista_clientes= Cliente.query.all()
     return render_template('clientes.html', lista_clientes=lista_clientes)
+
+@app.route('/buscarcliente', methods=['GET', 'POST'])
+def buscarcliente():
+    form_busca = FormBuscarCliente()
+    if form_busca.validate_on_submit() and 'botao_submit_busca' in request.form:
+        id_cliente = Cliente.query.filter_by(email=form_busca.email.data).first().id
+        pagamento = Pagamento.query.filter_by(id_cliente=id_cliente).first()
+
+        if pagamento:
+           return render_template('buscar_cliente.html',form_busca=form_busca, pagamento=pagamento)
+
+        else:
+            flash(f'Cliente não localizado', 'alert-danger')
+    return render_template('buscar_cliente.html',form_busca=form_busca)
 
 @app.route('/pagamentos')
 def pagamentos():
