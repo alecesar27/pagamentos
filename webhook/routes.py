@@ -56,7 +56,6 @@ def buscarcliente():
             pagamento = Pagamento.query.filter_by(id_cliente=id_cliente).first()
 
             return render_template('buscar_cliente.html',form_busca=form_busca, pagamento=pagamento)
-
         else:
             flash(f'Cliente não localizado', 'alert-danger')
     return render_template('buscar_cliente.html',form_busca=form_busca)
